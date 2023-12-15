@@ -13,7 +13,12 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        return "index";
+        $nome='rodrigo';
+        $idade= 20;
+        $html="<h1>Oi</h1>";
+
+        return view('site.home', compact('nome','idade','html'));
+
     }
 
     /**
@@ -45,7 +50,7 @@ class ProdutoController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
