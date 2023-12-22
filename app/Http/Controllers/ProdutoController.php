@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Produto;
 use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
@@ -13,11 +14,9 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        $nome='rodrigo';
-        $idade= 20;
-        $html="<h1>Oi</h1>";
+        $produtos = Produto::paginate(3);
 
-        return view('site.home', compact('nome','idade','html'));
+        return view('site.home', compact('produtos'));
 
     }
 
