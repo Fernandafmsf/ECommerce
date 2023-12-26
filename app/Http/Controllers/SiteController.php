@@ -16,10 +16,17 @@ class SiteController extends Controller
 
     public function details($slug){
 
-        $produto = Produto::where('slug', $slug)->first();
+        $produto = Produto::where('slug', $slug)->first();//traz apenas um registro
 
         return view('site.details', compact('produto')); 
 
+    }
+
+    public function categoria($id)
+    {
+        $produtos = Produto::where('id_categoria', $id)->get();//get usado para retornar varios produtos que condizem com a condiçao
+
+        return view('site.categoria', compact('produtos'));
     }
 
 }

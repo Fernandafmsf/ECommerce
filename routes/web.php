@@ -14,6 +14,7 @@ Route::group([
 ], function(){
   Route::get('/', 'index')->name('site-index') ;
   Route::get('/produto/{slug}', 'details')->name('site-details'); //exibir unico produto
+  Route::get('/categoria/{id}', 'categoria')->name('site-categoria');
 
 });
 
