@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 
@@ -24,9 +25,10 @@ class SiteController extends Controller
 
     public function categoria($id)
     {
+        $categoria= Categoria::find($id);
         $produtos = Produto::where('id_categoria', $id)->get();//get usado para retornar varios produtos que condizem com a condiçao
 
-        return view('site.categoria', compact('produtos'));
+        return view('site.categoria', compact('produtos', 'categoria'));
     }
 
 }
