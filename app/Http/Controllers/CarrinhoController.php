@@ -25,7 +25,7 @@ class CarrinhoController extends Controller
 
             ]);
            
-            return redirect()->route('site-carrinho')->with('sucesso', 'Produto adicionado');
+            return redirect()->route('site-carrinho')->with('sucesso', 'Produto adicionado com sucesso');
             
     }
 }
