@@ -19,5 +19,15 @@ Route::group([
 
 });
 
-Route::get('/carrinho', [ CarrinhoController::class, 'carrinhoLista'])->name('site-carrinho');
-Route::post('/carrinho', [CarrinhoController::class, 'adicionaCarrinho'])->name('site-addcarrinho');
+Route::group([
+  'controller' =>CarrinhoController::class
+], function(){
+  Route::get('/carrinho', 'carrinhoLista')->name('site-carrinho');
+  Route::post('/carrinho', 'adicionaCarrinho')->name('site-addcarrinho');
+  Route::post('/remover', 'removeCarrinho')->name('site-removecarrinho');
+  Route::post('/atualizar', 'atualizaCarrinho')->name('site-atualizacarrinho');
+  Route::get('/limpar', 'limparCarrinho')->name('site-limparcarrinho');
+
+});
+
+
