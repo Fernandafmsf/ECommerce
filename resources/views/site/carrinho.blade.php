@@ -29,7 +29,16 @@
 
   <h3>Seu carrinho possui {{ $itens->count() }} produtos</h3>
  
-  @if($itens->count()>0)
+  @if($itens->count() == 0)
+
+      <div class="card orange darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">Seu carrinho está vazio </span>
+          <p>Aproveite nossas promoções!</p>
+        </div>
+      </div>
+
+  @else
     <table class="stripped">
 
         <thead>
@@ -42,11 +51,10 @@
           </tr>
         </thead>
         <tbody>
-  
-  @endif
-    
-<!--itens pq estamos recebendo itens da funcao carrinhoLista do carrinho controller
-Aqui vamos pegar os dados de itens -->
+
+
+    <!--itens pq estamos recebendo itens da funcao carrinhoLista do carrinho controller
+    Aqui vamos pegar os dados de itens -->
   
   @foreach ($itens as $item)
         <tr>
@@ -62,7 +70,7 @@ Aqui vamos pegar os dados de itens -->
              <input type="hidden" name="id" value="{{$item->id}}">
 
               <td>
-                <input style="width: 40px; font-weight:700; " type="number" name="quantity" value="{{$item->quantity}}">
+                <input style="width: 40px; font-weight:700; " min="1" type="number" name="quantity" value="{{$item->quantity}}">
               </td>
 
               <td>
@@ -86,7 +94,17 @@ Aqui vamos pegar os dados de itens -->
     </tbody>
   </table>
 
-   <div class="row container center">
+
+  <div class="card black darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">R$ {{ number_format(\Cart::getTotal(), 2, ',', '.') }}</span>
+          <p>Pague em 12x sem juros!</p>
+        </div>
+      </div>
+
+  @endif
+    
+  <div class="row container center">
       
       <a href="{{route('site-index')}}" class="btn waves-effect waves-light blue">Continuar comprando<i class="material-icons right">arrow_back</i></a>
 

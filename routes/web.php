@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CarrinhoController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
@@ -29,5 +30,10 @@ Route::group([
   Route::get('/limpar', 'limparCarrinho')->name('site-limparcarrinho');
 
 });
+
+
+Route::view('/login', 'login.form')->name('login.form');
+Route::post('/auth', [LoginController::class, 'auth'])->name('login.auth');
+
 
 
