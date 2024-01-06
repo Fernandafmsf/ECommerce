@@ -1,3 +1,3 @@
-# Storage control 
-Laravel project created to work like a Ecommerce control. 
+# E-Commerce
+Laravel project created to work like a Store. 
 
