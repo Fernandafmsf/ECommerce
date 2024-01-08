@@ -28,10 +28,17 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
             //redirecionamento com intended. Verifica se user vem de algum lugar. Por exemplo, necessidade de logar ao finalizar um carrinho-> vai ser mandado p login e dps pro carrinho de volta 
-            return redirect()->intended(' dashboard');
+            return redirect()->intended('/admin/dashboard');
         }else{
             return redirect()->back()->with('erro', 'Usuário ou senha inválida.');
         }
 
+    }
+
+    public function logOut(Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect(route('site-index'));
     }
 }

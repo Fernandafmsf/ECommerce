@@ -15,6 +15,15 @@
   <li><a href="{{route('site-categoria', $categoriaM->id)}}">{{$categoriaM->nome}}</a></li>
  @endforeach
 </ul>
+
+
+<!-- Dropdown2 Structure -->
+<ul id="dropdown2" class="dropdown-content">
+  
+  <li><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
+  <li><a href="{{route('login.logout')}}">Sair</a></li>
+
+</ul>
   
 
   <nav class="black">
@@ -24,8 +33,17 @@
         <li><a href="{{route('site-index')}}">Home</a></li>
         <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Categorias <i class="material-icons right">expand_more</i> </a></li>
         <li><a href="{{route('site-carrinho')}}">Carrinho</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="right">
+      @auth
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown2">Olá, {{auth()->user()->firstname}} <i class="material-icons right">expand_more</i> </a></li>
+      @else
+        <li><a  href="{{route('login.form')}}" >Login<i class="material-icons right">lock</i> </a></li>
+      @endauth
        
       </ul>
+
     </div>
   </nav>
 
