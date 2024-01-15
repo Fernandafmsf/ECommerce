@@ -22,6 +22,8 @@
 <label for="email">Senha: </label>
 <input type="password" name="password">
 <br><br>
+<input type="checkbox" name="remember" >Lembrar-me
+
 <button type="submit">Entrar</button>
 </form>
 

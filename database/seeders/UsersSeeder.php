@@ -15,11 +15,11 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-         User::create ([
-            'firstname' => 'Rodrigo',
-            'lastname' => 'Oliveira',
-            'email' => 'contato@rodrigo.com',
-            'password' => bcrypt('12345678'),
-         ]);
+        //  User::create ([
+        //     'firstname' => 'Rodrigo',
+        //     'lastname' => 'Oliveira',
+        //     'email' => 'contato@rodrigo.com',
+        //     'password' => bcrypt('12345678'),
+        //  ]);
     }
 }

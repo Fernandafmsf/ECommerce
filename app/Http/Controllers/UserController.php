@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Produto;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class ProdutoController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +15,7 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-
-        $produtos = Produto::paginate(2);
-        return view('admin.produtos', compact('produtos'));
+        //
     }
 
     /**
@@ -37,7 +36,13 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = $request->all(); //pegando todos os campos ao inves de um por vez 
+        $user['password'] = bcrypt($request->password); //pegando a senha e encriptando antes de enviar para o banco de dados 
+        $user = User::create($user);
+        
+        Auth::login($user);//fazendo login com user criado 
+
+        return redirect()->route('admin.dashboard');
     }
 
     /**
@@ -48,7 +53,7 @@ class ProdutoController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**

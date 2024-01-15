@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use App\Models\Produto;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 
 class SiteController extends Controller
@@ -18,6 +19,8 @@ class SiteController extends Controller
     public function details($slug){
 
         $produto = Produto::where('slug', $slug)->first();//traz apenas um registro
+        //essa linha de codigo vai usar a funçao que definimos em AuthServices, que é uma logica para permitir que apenas os users que cadastraram um produto, consiga ver os detalhes do mesmo
+        Gate::authorize('ver-produto', $produto);
 
         return view('site.details', compact('produto')); 
 
@@ -30,5 +33,5 @@ class SiteController extends Controller
 
         return view('site.categoria', compact('produtos', 'categoria'));
     }
-
+ 
 }
