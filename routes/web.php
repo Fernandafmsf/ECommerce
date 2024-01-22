@@ -48,8 +48,10 @@ Route::group([
 
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard')->middleware(['auth', 'checkemail']); //middleware vai negar o acesso ao dashboard se nn estiver logado 
 
-Route::get('admin/produtos', [ProdutoController::class, 'index'])->name('admin.produtos'); //exibindo produtos
 
-Route::delete('admin/produto/delete/{id}', [ProdutoController::class, 'destroy'])->name('admin.delete'); //deletando produtos 
+Route::get('admin/produtos', [ProdutoController::class, 'index'])->name('admin.produtos'); //exibindo produtos
+Route::delete('admin/produto/delete/{id}', [ProdutoController::class, 'destroy'])->name('admin.produtos.delete'); //deletando produtos 
+Route::post('admin/produto/store', [ProdutoController::class, 'store'])->name('admin.produtos.store');
+Route::put('admin/produto/{id}', [ProdutoController::class, 'update'])->name('admin.produtos.update');
 
 

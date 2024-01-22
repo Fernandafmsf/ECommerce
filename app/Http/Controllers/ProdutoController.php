@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Produto;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Str;
 
 class ProdutoController extends Controller
 {
@@ -16,7 +19,8 @@ class ProdutoController extends Controller
     {
 
         $produtos = Produto::paginate(2);
-        return view('admin.produtos', compact('produtos'));
+        $categorias = Categoria::all();
+        return view('admin.produtos', compact('produtos', 'categorias'));
     }
 
     /**
@@ -37,7 +41,19 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $produto = $request->all();
+
+        //se vier uma img faremos o upload da img com o metodo store, usando subpasta produtos. Vai retornar o path, que deve ser guardado no banco de dados, entoa precisamos armazenar esse valor em uma variavel(em $produto['imagem])
+        if($request->imagem){
+           $produto['imagem'] =  $request->imagem->store('produtos'); //mada para storage/app /produtos
+        }
+
+        $produto['slug'] = Str::slug($request->nome); //criando slug a partir do nome
+
+        $produto = Produto::create($produto);
+
+
+        return redirect()->route('admin.produtos')->with('sucesso', 'Cadastrado com sucesso');
     }
 
     /**
@@ -59,7 +75,7 @@ class ProdutoController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -71,7 +87,16 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $produto = $request->all();
+
+        if($request->imagem){
+           $produto['imagem'] =  $request->imagem->store('produtos'); //mada para storage/app /produtos
+        }
+
+        Produto::find($id)->update($produto);
+        return redirect()->route('admin.produtos')->with('atualizado', 'Atualizado com sucesso');
+       
     }
 
     /**
@@ -84,6 +109,6 @@ class ProdutoController extends Controller
     {
         $produto = Produto::find($id);
         $produto->delete();
-        return redirect()->route('admin.produtos')->with('sucesso', 'Produto removido com sucesso');
+        return redirect()->route('admin.produtos')->with('removido', 'Produto removido com sucesso');
     }
 }
