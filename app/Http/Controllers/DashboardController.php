@@ -16,7 +16,6 @@ class DashboardController extends Controller
 
         //orm - eloquent -> metodos find, get, all... 
 
-        
         //GRAFICO 1 - USUARIOS 
         $usersData = User::select([
             DB::raw('YEAR(created_at) as ano'),
