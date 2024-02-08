@@ -15,19 +15,17 @@ return new class extends Migration
     {
         Schema::create('produtos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('categoria_id')->constrained('categorias')->onDelete('cascade');
+
             $table->string('nome');
             $table->text('descricao');
-            $table->double('preco', 10,2);
+            $table->integer('preco'); // R$ 10,00 = 1 10 100 1000
             $table->string('slug');
             $table->string('imagem')->nullable(); //pode ser vazio
-            
-            $table->unsignedBigInteger('id_user'); //relacionamento com table users 
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade'); // referenciando a tabela e definindo que 
 
-            $table->unsignedBigInteger('id_categoria'); //relacionamento com table users 
-            $table->foreign('id_categoria')->references('id')->on('categorias')->onDelete('cascade')->onUpdate('cascade');
 
-            $table->timestamps(); //colunas de created e updated 
+            $table->timestamps(); //colunas de created e updated
         });
     }
 

@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('contatos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users');
+
             $table->string('cpf');
             $table->string('cep');
             $table->string('numero');
             $table->string('whatsapp');
 
-            $table->unsignedBigInteger('id_user'); 
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

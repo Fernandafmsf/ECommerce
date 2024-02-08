@@ -10,21 +10,17 @@
 <body>
 
 <!-- Dropdown Structure -->
-<ul id="dropdown1" class="dropdown-content">
-  @foreach($categoriasMenu as $categoriaM)
-  <li><a href="{{route('site-categoria', $categoriaM->id)}}">{{$categoriaM->nome}}</a></li>
- @endforeach
-</ul>
+<x-menu-categorias/>
 
 
 <!-- Dropdown2 Structure -->
 <ul id="dropdown2" class="dropdown-content">
-  
+
   <li><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
   <li><a href="{{route('login.logout')}}">Sair</a></li>
 
 </ul>
-  
+
 
   <nav class="black">
     <div class="nav-wrapper container">
@@ -41,13 +37,13 @@
       @else
         <li><a  href="{{route('login.form')}}" >Login<i class="material-icons right">lock</i> </a></li>
       @endauth
-       
+
       </ul>
 
     </div>
   </nav>
 
- 
+
 
   @yield('conteudo')
 
@@ -57,7 +53,7 @@
     document.addEventListener('DOMContentLoaded', function() {
       var drop = document.querySelectorAll('.dropdown-trigger');
       M.Dropdown.init(drop,{
-        coverTrigger: false, 
+        coverTrigger: false,
         constrainWidth:false,
       });
   });
