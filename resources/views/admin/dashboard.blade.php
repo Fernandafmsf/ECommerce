@@ -9,7 +9,7 @@
         <div class="col s12 m4">
         <article class="bg-gradient-green card z-depth-4 ">
           <i class="material-icons">paid</i>
-          <p>Faturamento</p>
+          <p>Faturamento <span> - A fazer </span></p>
           <h3>R$ 123,00</h3>       
         </article>
         </div>
@@ -25,7 +25,7 @@
           <div class="col s12 m4">
             <article class="bg-gradient-orange card z-depth-4 ">
               <i class="material-icons">shopping_cart</i>
-              <p>Pedidos este mês</p>
+              <p>Pedidos este mês <span> - A fazer </span></p>
               <h3>0</h3>            
             </article>
             </div>

@@ -11,9 +11,9 @@
           <div class="card-image">
             <img src="{{url("storage/{$produto->imagem}")}}" >
 
-            @can('ver-produto', $produto)
+            {{--@can('ver-produto', $produto)--}}
             <a href="{{route('site-details', $produto->slug)}}" class="btn-floating halfway-fab waves-effect waves-light black"><i class="material-icons">add</i></a>
-            @endcan
+            {{--@endcan--}}
 
             {{-- @cannot('ver-produto', $produto)
 
