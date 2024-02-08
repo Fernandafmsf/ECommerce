@@ -24,15 +24,15 @@ class CategoriasSeeder extends Seeder
         $categorias = [
             [
                 'nome' => 'Eletronicos',
-                'descrição' => 'Melhor preço que na shopee'
+                'descricao' => 'Melhor preço que na shopee'
             ],
             [
                 'nome' => 'Eletrodomesticos',
-                'descrição' => 'Melhor preço que na shopee'
+                'descricao' => 'Melhor preço que na shopee'
             ],
             [
                 'nome' => 'Presentes',
-                'descrição' => 'Melhor preço que na shopee'
+                'descricao' => 'Melhor preço que na shopee'
             ],
         ];
 
