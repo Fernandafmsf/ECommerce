@@ -15,6 +15,29 @@ class CategoriasSeeder extends Seeder
      */
     public function run()
     {
-        Categoria::factory(5)->create();
+        if (config('app.env') == 'local') {
+            Categoria::factory()->count(5)->create();
+            return;
+        }
+
+
+        $categorias = [
+            [
+                'nome' => 'Eletronicos',
+                'descrição' => 'Melhor preço que na shopee'
+            ],
+            [
+                'nome' => 'Eletrodomesticos',
+                'descrição' => 'Melhor preço que na shopee'
+            ],
+            [
+                'nome' => 'Presentes',
+                'descrição' => 'Melhor preço que na shopee'
+            ],
+        ];
+
+        foreach ($categorias as $categoria) {
+            Categoria::query()->create($categoria);
+        }
     }
 }

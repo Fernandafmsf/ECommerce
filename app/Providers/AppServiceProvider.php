@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //metodo de inicializacao
-        $categoriasMenu= Categoria::all();
-        view()->share('categoriasMenu', $categoriasMenu);//compartilhando dados com todas as views 
+        // $categoriasMenu= Categoria::all();
+        // view()->share('categoriasMenu', $categoriasMenu);//compartilhando dados com todas as views
     }
 }
