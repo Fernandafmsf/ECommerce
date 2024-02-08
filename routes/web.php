@@ -9,7 +9,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::resource('users', UserController::class);//users.store
+Route::resource('users', UserController::class); //users.store
 
 
 Route::group([
@@ -18,7 +18,7 @@ Route::group([
 ], function () {
     Route::get('/', 'index')->name('site-index');
     Route::get('/produto/{slug}', 'details')->name('site-details'); //exibir unico produto
-    Route::get('/categoria/{id}', 'categoria')->name('site-categoria');
+    Route::get('/categoria/{categoria}', 'categoria')->name('site-categoria');
 
 });
 
@@ -45,7 +45,7 @@ Route::group([
 });
 
 
-Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard')->middleware(['auth', 'checkemail']); //middleware vai negar o acesso ao dashboard se nn estiver logado
+Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard')->middleware(['auth']); //middleware vai negar o acesso ao dashboard se nn estiver logado
 
 
 Route::get('admin/produtos', [ProdutoController::class, 'index'])->name('admin.produtos'); //exibindo produtos

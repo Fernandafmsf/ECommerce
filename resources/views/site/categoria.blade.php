@@ -6,7 +6,7 @@
 <div class="row container">
 
   <h3>Categoria:{{$categoria->nome}} </h3>
-  @foreach ($produtos as $produto)
+  @foreach ($categoria->produtos as $produto)
     <div class="col s12 m4">
         <div class="card">
           <div class="card-image">
@@ -21,14 +21,14 @@
         </div>
   </div>
  @endforeach
- 
+
 
 
  <div class="d-flex row center">
- 
+
 
  </div>
- 
+
 
 
 

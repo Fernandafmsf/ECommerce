@@ -3,24 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Cria um novo usuário.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        $user = $request->all(); //pegando todos os campos ao inves de um por vez 
-        $user['password'] = bcrypt($request->password); //pegando a senha e encriptando antes de enviar para o banco de dados 
+        $user = $request->all(); //pegando todos os campos ao inves de um por vez
+        $user['password'] = Hash::make($request->password); //pegando a senha e encriptando antes de enviar para o banco de dados
         $user = User::create($user);
-        
-        Auth::login($user);//fazendo login com user criado 
+
+        Auth::login($user);//fazendo login com user criado
 
         return redirect()->route('admin.dashboard');
     }

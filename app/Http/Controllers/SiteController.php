@@ -29,12 +29,11 @@ class SiteController extends Controller
 
     }
 
-    public function categoria(int $id): View
+    public function categoria(Categoria $categoria): View
     {
-        $categoria = Categoria::find($id);
-        $produtos = Produto::where('categoria_id', $id)->get();//get usado para retornar varios produtos que condizem com a condiçao
-
-        return view('site.categoria', compact('produtos', 'categoria'));
+        return view('site.categoria', [
+            'categoria' => $categoria
+        ]);
     }
 
 }
