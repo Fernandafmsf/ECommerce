@@ -20,7 +20,7 @@ return new class extends Migration
 
             $table->string('nome');
             $table->text('descricao');
-            $table->double('preco', 10,2);
+            $table->integer('preco'); // R$ 10,00 = 1 10 100 1000
             $table->string('slug');
             $table->string('imagem')->nullable(); //pode ser vazio
 

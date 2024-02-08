@@ -6,32 +6,35 @@ use App\Models\Categoria;
 use App\Models\Produto;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class SiteController extends Controller
 {
-    
-    public function index(){
-        $produtos= Produto::paginate(3);
+
+    public function index()
+    {
+        $produtos = Produto::paginate(3);
 
         return view('site.home', compact('produtos'));
     }
 
-    public function details($slug){
+    public function details($slug)
+    {
 
         $produto = Produto::where('slug', $slug)->first();//traz apenas um registro
         //essa linha de codigo vai usar a funçao que definimos em AuthServices, que é uma logica para permitir que apenas os users que cadastraram um produto, consiga ver os detalhes do mesmo
         Gate::authorize('ver-produto', $produto);
 
-        return view('site.details', compact('produto')); 
+        return view('site.details', compact('produto'));
 
     }
 
-    public function categoria($id)
+    public function categoria(int $id): View
     {
-        $categoria= Categoria::find($id);
-        $produtos = Produto::where('id_categoria', $id)->get();//get usado para retornar varios produtos que condizem com a condiçao
+        $categoria = Categoria::find($id);
+        $produtos = Produto::where('categoria_id', $id)->get();//get usado para retornar varios produtos que condizem com a condiçao
 
         return view('site.categoria', compact('produtos', 'categoria'));
     }
- 
+
 }
